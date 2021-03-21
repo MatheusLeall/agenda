@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1>Sign-up</h1>
+<br>
+<form method="POST" action="{% url 'signup' %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="InputFirtsName">Nome</label>
+        <input type="text" id="InputFirtsName" name="first-name" class="form-control form-control-sm">
+    </div>
+    <div class="form-group">
+        <label for="InputLastName">Sobrenome</label>
+        <input type="text" id="InputLastName" name="last-name" class="form-control form-control-sm">
+    </div>
+    <div class="form-group">
+        <label for="InputEmail">E-mail</label>
+        <input type="email" id="InputEmail" name="email" class="form-control form-control-sm">
+        <small class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
+    </div>
+    <div class="form-group">
+        <label for="InputUser">Usuário</label>
+        <input type="text" id="InputUser" name="user" class="form-control form-control-sm">
+    </div>
+    <div class="form-group">
+        <label for="InputPassword">Senha</label>
+        <input type="password" class="form-control form-control-sm" id="InputPassword" name="password">
+    </div>
+    <div class="form-group">
+        <label for="InputConfirmPassword">Confirmar senha</label>
+        <input type="password" class="form-control" id="InputConfirmPassword" name="confirm-password">
+    </div>
+    <button type="submit" class="btn btn-primary mt-4 mb-4">Cadastrar</button>
+</form>
+{% endblock %}
