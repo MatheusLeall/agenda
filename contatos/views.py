@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.http import Http404
 from .models import Contato
 from django.db.models import Q, Value
 from django.db.models.functions import Concat
+from django.contrib import messages
 
 # View da página inicial
 def index(request):
@@ -29,8 +30,13 @@ def show(request, contato_id):
 def search(request):
     search_for = request.GET.get('search_for')
 
-    if search_for is None:
-        raise Http404()
+    if search_for is None or not search_for:
+        messages.add_message(
+            request,
+            messages.WARNING,
+            'Informe um termo para busca.'
+        )
+        return redirect('index')
 
     campos = Concat('nome', Value(' '), 'sobrenome')
     contatos = Contato.objects.annotate(nome_completo=campos)\
