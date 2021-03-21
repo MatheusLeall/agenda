@@ -2,4 +2,17 @@
 
 {% block body %}
 <h1>Login</h1>
+
+<form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="InputUser">Usuário</label>
+        <input type="text" id="InputUser" name="user" class="form-control form-control-sm">
+    </div>
+    <div class="form-group">
+        <label for="InputPassword">Senha</label>
+        <input type="password" class="form-control form-control-sm" id="InputPassword" name="password">
+    </div>
+    <button type="submit" class="btn btn-primary mt-4 mb-4">Entrar</button>
+</form>
 {% endblock %}
